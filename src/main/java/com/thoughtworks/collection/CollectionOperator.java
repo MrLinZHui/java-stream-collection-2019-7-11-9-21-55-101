@@ -2,8 +2,7 @@ package com.thoughtworks.collection;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -31,11 +30,17 @@ public class CollectionOperator {
     }
 
     public List<Integer> popEvenElments(int[] array) {
+       List list = new ArrayList<>();
+        Collections.addAll(list,array);
+//        System.out.println(list);
+        //list.stream().filter(num -> (int)num%2 == 0).collect(Collectors.toList());
+        //return list.stream().filter(num -> (Integer) num%2==0).collect(Collectors.toList());
         throw new NotImplementedException();
     }
 
     public int popLastElment(int[] array) {
-        throw new NotImplementedException();
+      //  throw new NotImplementedException();
+        return array[array.length-1];
     }
 
     public List<Integer> popCommonElement(int[] firstArray, int[] secondArray) {
