@@ -4,25 +4,23 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static java.util.stream.Collectors.averagingInt;
+
 public class Add {
     public int getSumOfEvens(int leftBorder, int rightBorder) {
-        ArrayList<Integer>arrayList = new ArrayList<Integer>();
+        List<Integer>arrayList = new ArrayList<Integer>();
         if(leftBorder <=rightBorder){
-            while(leftBorder <=rightBorder){
-                arrayList.add(leftBorder++);
-            }
+            arrayList = IntStream.range(leftBorder,rightBorder+1).boxed().collect(Collectors.toList());
         }else{
-            while(leftBorder >=rightBorder){
-                arrayList.add(rightBorder++);
-            }
+            arrayList = IntStream.range(rightBorder,leftBorder+1).boxed().collect(Collectors.toList());
         }
-
-        int sum =arrayList.stream().filter(num->num%2==0).reduce(( num,num1) ->num+=num1).get().intValue();
+        int sum = (int)arrayList.stream().filter(num->num%2==0).collect(Collectors.summarizingInt(value -> value)).getSum();
         return sum;
 
     }
@@ -32,7 +30,8 @@ public class Add {
     }
 
     public int getSumTripleAndAddTwo(List<Integer> arrayList) {
-        return arrayList.stream().map(num ->3*num+2).reduce((num1,num2) ->num1 +=num2).get().intValue();
+        //return arrayList.stream().map(num ->3*num+2).reduce((num1,num2) ->num1 +=num2).get().intValue();
+        return (int)arrayList.stream().map(num ->3*num+2).collect(Collectors.summarizingInt(value -> value)).getSum();
         //throw new NotImplementedException();
     }
 
@@ -49,11 +48,10 @@ public class Add {
 //    }
 
     public double getAverageOfEven(List<Integer> arrayList) {
-        List <Integer> arrayList1 =arrayList.stream().filter(num -> num%2==0).collect(Collectors.toList());
-        int count = arrayList1.size();
-       // System.out.println("count:"+count+",arrayList:"+arrayList);
-        return (double)arrayList1.stream().reduce((num1,num2) ->num1+=num2).get().intValue()/count;
-        //throw new NotImplementedException();
+//        List <Integer> arrayList1 =arrayList.stream().filter(num -> num%2==0).collect(Collectors.toList());
+//        int count = arrayList1.size();
+//        return (double)arrayList1.stream().reduce((num1,num2) ->num1+=num2).get().intValue()/count;
+        return arrayList.stream().filter(num -> num%2==0).collect(Collectors.averagingInt(item ->item));
     }
 
     public boolean isIncludedInEvenIndex(List<Integer> arrayList, Integer specialElment) {
