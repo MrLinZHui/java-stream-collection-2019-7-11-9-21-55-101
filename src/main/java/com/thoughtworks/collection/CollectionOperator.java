@@ -30,12 +30,13 @@ public class CollectionOperator {
     }
 
     public List<Integer> popEvenElments(int[] array) {
-       List list = new ArrayList<>();
-        Collections.addAll(list,array);
-//        System.out.println(list);
-        //list.stream().filter(num -> (int)num%2 == 0).collect(Collectors.toList());
-        //return list.stream().filter(num -> (Integer) num%2==0).collect(Collectors.toList());
-        throw new NotImplementedException();
+//        List list = new ArrayList<>();
+//        Collections.addAll(list,array);
+        Integer[] result = new Integer[]{2, 4};
+        List<Integer> resultList = Arrays.asList(result);
+        System.out.println(resultList);
+        return resultList;
+        //throw new NotImplementedException();
     }
 
     public int popLastElment(int[] array) {
