@@ -15,13 +15,13 @@ import static java.util.stream.Collectors.averagingInt;
 public class Add {
     public int getSumOfEvens(int leftBorder, int rightBorder) {
         List<Integer>arrayList = new ArrayList<Integer>();
+        arrayList = IntStream.range(rightBorder,leftBorder+1).boxed().collect(Collectors.toList());
         if(leftBorder <=rightBorder){
             arrayList = IntStream.range(leftBorder,rightBorder+1).boxed().collect(Collectors.toList());
-        }else{
-            arrayList = IntStream.range(rightBorder,leftBorder+1).boxed().collect(Collectors.toList());
         }
-        int sum = (int)arrayList.stream().filter(num->num%2==0).collect(Collectors.summarizingInt(value -> value)).getSum();
-        return sum;
+//        int sum = (int)arrayList.stream().filter(num->num%2==0).collect(Collectors.summarizingInt(value -> value)).getSum();
+//        return sum;
+        return arrayList.stream().filter(num ->num%2==0).mapToInt(num ->num).sum();
 
     }
 
