@@ -52,7 +52,8 @@ public class Add {
 //        List <Integer> arrayList1 =arrayList.stream().filter(num -> num%2==0).collect(Collectors.toList());
 //        int count = arrayList1.size();
 //        return (double)arrayList1.stream().reduce((num1,num2) ->num1+=num2).get().intValue()/count;
-        return arrayList.stream().filter(num -> num%2==0).collect(Collectors.averagingInt(item ->item));
+      //  return arrayList.stream().filter(num -> num%2==0).collect(Collectors.averagingInt(item ->item));
+        return   arrayList.stream().filter((num ->num%2==0)).mapToInt(num ->num).average().getAsDouble();
     }
 
     public boolean isIncludedInEvenIndex(List<Integer> arrayList, Integer specialElment) {
