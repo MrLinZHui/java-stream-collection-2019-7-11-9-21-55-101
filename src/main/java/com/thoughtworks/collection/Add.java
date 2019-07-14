@@ -31,7 +31,8 @@ public class Add {
 
     public int getSumTripleAndAddTwo(List<Integer> arrayList) {
         //return arrayList.stream().map(num ->3*num+2).reduce((num1,num2) ->num1 +=num2).get().intValue();
-        return (int)arrayList.stream().map(num ->3*num+2).collect(Collectors.summarizingInt(value -> value)).getSum();
+        return arrayList.stream().map((num ->3*num+2)).mapToInt(num ->num).sum();
+        //return (int)arrayList.stream().map(num ->3*num+2).collect(Collectors.summarizingInt(value -> value)).getSum();
         //throw new NotImplementedException();
     }
 
